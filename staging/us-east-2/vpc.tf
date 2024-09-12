@@ -33,7 +33,7 @@ resource "aws_internet_gateway" "staging_igw" {
 
 resource "aws_nat_gateway" "staging_ngw" {
   # connectivity_type = public
-  allocation_id  = aws_eip.staging_eip.allocation_id
+  allocation_id = aws_eip.staging_eip.allocation_id
   # public_ip = aws_eip.staging_eip.public_ip
   subnet_id = aws_subnet.staging_public_subnet1.id
 

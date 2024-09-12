@@ -145,7 +145,7 @@ resource "aws_security_group" "staging_db_sg" {
   description = "Allow Oracle/RDS, MSSQL, MYSQL/Aurora, PosrgreSQL inbound traffic and all outbound traffic"
   vpc_id      = aws_vpc.staging_vpc.id
 
-############# Ingress rules for Database Security Group ##################
+  ############# Ingress rules for Database Security Group ##################
 
   ingress {
     description     = "Allows Oracle/RDS inbound traffic from Private Security Group only"
@@ -179,17 +179,17 @@ resource "aws_security_group" "staging_db_sg" {
     security_groups = [aws_security_group.staging_private_sg.id]
   }
 
-############# Egress rules for Database Security Group ###################
+  ############# Egress rules for Database Security Group ###################
 
-#   egress {
-#     description     = "Allows all outbound traffic to anywhere Private Security Group"
-#     from_port       = 0
-#     to_port         = 0
-#     protocol        = "-1"
-#     security_groups = [aws_security_group.staging_private_sg.id]
-#   }
+  #   egress {
+  #     description     = "Allows all outbound traffic to anywhere Private Security Group"
+  #     from_port       = 0
+  #     to_port         = 0
+  #     protocol        = "-1"
+  #     security_groups = [aws_security_group.staging_private_sg.id]
+  #   }
 
- egress {
+  egress {
     description     = "Allows Oracle/RDS inbound traffic from Private Security Group only"
     from_port       = 1521
     to_port         = 1521
