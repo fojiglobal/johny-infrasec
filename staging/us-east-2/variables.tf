@@ -1,8 +1,20 @@
 ##### Define the region variable
-variable "region" {
+variable "use2" {
   type    = string
   default = "us-east-2"
 }
+
+##### Define the Availability Zones variables
+variable "use2a" {
+  type    = string
+  default = "us-east-2a"
+}
+
+variable "use2b" {
+  type    = string
+  default = "us-east-2b"
+}
+
 
 ##### Define the VPC cidr block variable
 variable "vpc_cidr_block" {
@@ -129,3 +141,44 @@ variable "rt_cdr-block" {
   type    = string
   default = "0.0.0.0/0"
 }
+
+##### Define the  Instance Type Variable 
+variable "instane_type" {
+  type    = string
+  default = "t2.micro"
+}
+
+##### Define key pairs name variable
+variable "key_pairs_name" {
+  type    = string
+  default = "main-us-east-2"
+}
+
+##### Define ALB port and protocol variables
+variable "lb_proto_http" {
+  type    = string
+  default = "HTTP"
+}
+variable "lb_proto_https" {
+  type    = string
+  default = "HTTPS"
+}
+variable "lb_proto_tls" {
+  type    = string
+  default = "TLS"
+}
+variable "lb_port_http" {
+  type    = string
+  default = "80"
+}
+variable "lb_port_https" {
+  type    = string
+  default = "443"
+}
+
+##### Define LB ssl policy variables
+variable "lb_ssl_policy" {
+  type    = string
+  default = "ELBSecurityPolicy-2016-08"
+}
+
