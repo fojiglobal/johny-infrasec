@@ -7,7 +7,7 @@
 #   records = ["10.0.0.1"]
 # }
 
-resource "aws_route53_record" "www_stating" {
+resource "aws_route53_record" "www_staging" {
   zone_id = data.aws_route53_zone.johnyfoster_zone.id
   name    = "www.${var.environment}.johnyfoster.com"
   type    = "A"
@@ -19,7 +19,7 @@ resource "aws_route53_record" "www_stating" {
   }
 }
 
-resource "aws_route53_record" "stating" {
+resource "aws_route53_record" "staging" {
   zone_id = data.aws_route53_zone.johnyfoster_zone.id
   name    = "${var.environment}.johnyfoster.com"
   type    = "A"
