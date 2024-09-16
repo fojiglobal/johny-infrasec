@@ -12,7 +12,7 @@ resource "aws_launch_template" "staging_lt" {
   #image_id = data.aws_ami.staging_ami.id
   image_id                             = "ami-085f9c64a9b75eed5"
   instance_initiated_shutdown_behavior = "terminate"
-  instance_type                        = var.instane_type
+  instance_type                        = var.instanCe_type
   key_name                             = var.key_pairs_name
   vpc_security_group_ids               = [aws_security_group.staging_private_sg.id]
 
