@@ -143,7 +143,7 @@ variable "rt_cdr-block" {
 }
 
 ##### Define the  Instance Type Variable 
-variable "instanCe_type" {
+variable "instance_type" {
   type    = string
   default = "t2.micro"
 }
