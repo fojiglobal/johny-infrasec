@@ -100,6 +100,8 @@ locals {
   }
   public_sg_egress = {
     "all-traffic-ipv4" = {
+      from_port   = 0
+      to_port     = 0
       ip_protocol = "1"
       cidr_ipv4   = "0.0.0.0/0"
       description = "Allow all IPv4 outbound traffic"
@@ -138,6 +140,8 @@ locals {
 
   private_sg_egress = {
     "all-traffic-ipv4" = {
+      from_port   = 0
+      to_port     = 0  
       ip_protocol = "1"
       cidr_ipv4   = "0.0.0.0/0"
       description = "Allow all IPv4 outbound traffic"
@@ -162,9 +166,10 @@ locals {
 
   bastion_sg_egress = {
     "all-traffic-ipv4" = {
+      from_port   = 0
+      to_port     = 0  
       ip_protocol = "1"
       cidr_ipv4   = "0.0.0.0/0"
-      cidr_ipv6   = "::/0"
       description = "Allow all IPv4 outbound traffic"
     }
 

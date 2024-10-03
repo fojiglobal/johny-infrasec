@@ -110,6 +110,8 @@ resource "aws_vpc_security_group_ingress_rule" "public_sg_ingress" {
 resource "aws_vpc_security_group_egress_rule" "public_sg_egress" {
   security_group_id = aws_security_group.public_sg.id
   for_each = var.public_sg_ingress
+  from_port         = each.value["from_port"]
+  to_port           = each.value["to_port"]
   ip_protocol          = each.value["ip_protocol"]
   cidr_ipv4       = each.value["cidr_ipv4"]
   description = each.value["description"]
@@ -148,6 +150,8 @@ resource "aws_vpc_security_group_ingress_rule" "private_sg_ingress" {
 resource "aws_vpc_security_group_egress_rule" "private_sg_egress" {
   security_group_id = aws_security_group.private_sg.id
   for_each = var.private_sg_egress
+  from_port         = each.value["from_port"]
+  to_port           = each.value["to_port"]
   ip_protocol          = each.value["ip_protocol"]
   cidr_ipv4       = each.value["cidr_ipv4"]
   description = each.value["description"]
@@ -187,6 +191,8 @@ resource "aws_vpc_security_group_egress_rule" "bastion_sg_ingress" {
 resource "aws_vpc_security_group_egress_rule" "bastion_sg_egress" {
   security_group_id = aws_security_group.bastion_sg.id
   for_each = var.bastion_sg_egress
+  from_port         = each.value["from_port"]
+  to_port           = each.value["to_port"]
   ip_protocol          = each.value["ip_protocol"]
   cidr_ipv4       = each.value["cidr_ipv4"]
   description = each.value["description"]
