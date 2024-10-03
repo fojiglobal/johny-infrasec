@@ -100,10 +100,10 @@ locals {
   }
   public_sg_egress = {
     "all-traffic-ipv4" = {
-      from_port   = 0
-      to_port     = 0
-      ip_protocol = "1"
+    #   from_port   = 0
+    #   to_port     = 0
       cidr_ipv4   = "0.0.0.0/0"
+      ip_protocol = "-1"
       description = "Allow all IPv4 outbound traffic"
     }
   }
@@ -116,14 +116,14 @@ locals {
 locals {
   private_sg_ingress = {
     "all-http" = {
-      referenced_security_group_id = module.staging.private_sg_id
+      referenced_security_group_id = module.staging.public_sg_id
       from_port                    = 80
       to_port                      = 80
       ip_protocol                  = "tcp"
       description                  = "Allow all HTTP IPv4 and IPv6 inbound traffic from Public Security Group"
     }
     "all-https" = {
-      referenced_security_group_id = module.staging.private_sg_id
+      referenced_security_group_id = module.staging.public_sg_id
       from_port                    = 443
       to_port                      = 443
       ip_protocol                  = "tcp"
@@ -140,9 +140,9 @@ locals {
 
   private_sg_egress = {
     "all-traffic-ipv4" = {
-      from_port   = 0
-      to_port     = 0  
-      ip_protocol = "1"
+    #   from_port   = 0
+    #   to_port     = 0  
+      ip_protocol = "-1"
       cidr_ipv4   = "0.0.0.0/0"
       description = "Allow all IPv4 outbound traffic"
     }
@@ -166,9 +166,9 @@ locals {
 
   bastion_sg_egress = {
     "all-traffic-ipv4" = {
-      from_port   = 0
-      to_port     = 0  
-      ip_protocol = "1"
+    #   from_port   = 0
+    #   to_port     = 0  
+      ip_protocol = "-1"
       cidr_ipv4   = "0.0.0.0/0"
       description = "Allow all IPv4 outbound traffic"
     }

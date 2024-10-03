@@ -60,8 +60,8 @@ variable "public_sg_ingress" {
 
 variable "public_sg_egress" {
   type = map(object({
-    from_port = number
-    to_port = number
+    # from_port = number
+    # to_port = number
     ip_protocol = string
     cidr_ipv4 = string
     description = string
@@ -84,8 +84,8 @@ variable "private_sg_ingress" {
 
 variable "private_sg_egress" {
   type = map(object({
-    from_port = number
-    to_port = number
+    # from_port = number
+    # to_port = number
     ip_protocol = string
     cidr_ipv4 = string
     description = string
@@ -108,8 +108,8 @@ variable "bastion_sg_ingress" {
 
 variable "bastion_sg_egress" {
   type = map(object({
-    from_port = number
-    to_port = number
+    # from_port = number
+    # to_port = number
     ip_protocol = string
     cidr_ipv4 = string
     description = string
