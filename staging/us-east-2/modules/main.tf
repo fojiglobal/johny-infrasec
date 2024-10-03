@@ -226,7 +226,7 @@ resource "aws_route_table" "private_rt" {
 
   route {
     cidr_block = var.all_ipv4_cidr
-    gateway_id = aws_internet_gateway.igw.id
+    gateway_id = aws_nat_gateway.ngw.id
   }
 
   tags = {
