@@ -52,7 +52,7 @@ resource "aws_security_group" "staging_public_sg" {
 
 resource "aws_security_group" "staging_private_sg" {
   name        = "${var.environment}-${var.private_sg_name}"
-  description = "Allow HTP and HTTPS inbound traffic and all outbound traffic"
+  description = "Allow HTTP, HTTPS, and SSH inbound traffic and all outbound traffic"
   vpc_id      = aws_vpc.staging_vpc.id
 
   ############# Ingress rules for Private Security Group ####################

@@ -1,63 +1,26 @@
 ##########################################################################
-##### Create a VPC ressouve with cidr block "10.30.0.0/16"
+############# Staging infra provisioning using custum module
 ##########################################################################
 
-resource "aws_vpc" "staging_vpc" {
-  cidr_block       = var.vpc_cidr_block
-  instance_tenancy = "default"
-
-  tags = {
-    Name         = "${var.environment}-vpc"
-    Envinonment  = var.environment
-    Provisionner = var.provisioner
-  }
-}
-
-##########################################################################
-####### Create Internet Gateway
-##########################################################################
-
-resource "aws_internet_gateway" "staging_igw" {
-  vpc_id = aws_vpc.staging_vpc.id
-
-  tags = {
-    Name         = "${var.environment}-igw"
-    Envinonment  = var.environment
-    Provisionner = var.provisioner
-  }
-}
-
-##########################################################################
-####### Create Nat Gateway
-##########################################################################
-
-resource "aws_nat_gateway" "staging_ngw" {
-  # connectivity_type = public
-  allocation_id = aws_eip.staging_eip.allocation_id
-  # public_ip = aws_eip.staging_eip.public_ip
-  subnet_id = aws_subnet.staging_public_subnet1.id
-
-  tags = {
-    Name         = "${var.environment}-ngw"
-    Envinonment  = var.environment
-    Provisionner = var.provisioner
-  }
-
-  # To ensure proper ordering, it is recommended to add an explicit dependency
-  # on the Internet Gateway for the VPC.
-  depends_on = [aws_internet_gateway.staging_igw]
-}
-
-##########################################################################
-####### Create Elastic IP for the Nat Gateway
-##########################################################################
-
-resource "aws_eip" "staging_eip" {
-  domain = "vpc"
-
-  tags = {
-    Name         = "${var.environment}-eip"
-    Envinonment  = var.environment
-    Provisionner = var.provisioner
-  }
+module "staging" {
+  source                               = "./modules"
+  vpc_cidr                             = local.vpc_cidr
+  env                                  = local.env
+  provisioner                          = local.provisioner
+  public_subnets                       = local.public-subnets
+  private_subnets                      = local.private-subnets
+  public_subnet_name                   = local.public_subnet_name
+  public_sg_ingress                    = local.public_sg_ingress
+  public_sg_egress                     = local.public_sg_egress
+  private_sg_ingress                   = local.private_sg_ingress
+  private_sg_egress                    = local.private_sg_egress
+  bastion_sg_ingress                   = local.bastion_sg_ingress
+  bastion_sg_egress                    = local.bastion_sg_egress
+  all_ipv4_cidr                        = local.all_ipv4_cidr
+  image_id                             = local.image_id
+  instance_initiated_shutdown_behavior = local.instance_initiated_shutdown_behavior
+  instance_type                        = local.instance_type
+  key_pairs_name                       = local.key_pairs_name
+  resource_type                        = local.resource_type
+  user_data                            = local.user_data
 }
