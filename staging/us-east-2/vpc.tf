@@ -23,4 +23,13 @@ module "staging" {
   key_pairs_name                       = local.key_pairs_name
   resource_type                        = local.resource_type
   user_data                            = local.user_data
+  lb_proto_http = local.lb_proto_http
+  load_balancer_type = local.load_balancer_type
+  lb_proto_https = local.lb_proto_https
+  lb_port_http = local.lb_port_http
+  lb_port_https = local.lb_port_https
+  lb_ssl_policy = local.lb_ssl_policy
+  zone_id = local.zone_id
+  certificate_arn = local.certificate_arn
+  dns_aliases = local.dns_aliases
 }

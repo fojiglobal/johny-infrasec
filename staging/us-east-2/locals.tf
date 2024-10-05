@@ -203,3 +203,30 @@ locals {
   resource_type                        = "instance"
   user_data                            = filebase64("web.sh")
 }
+
+##########################################################################
+############# Locals for Target Group and Load balancer
+##########################################################################
+
+locals {
+  lb_proto_http = "HTTP"
+  load_balancer_type = "application"
+  lb_proto_https = "HTTPS"
+  lb_port_http = "80"
+  lb_port_https = "443"
+  lb_ssl_policy = "ELBSecurityPolicy-2016-08"
+}
+
+##########################################################################
+############# Locals for DNS records
+##########################################################################
+
+locals {
+  dns_aliases = {
+    "alias1" = "www.${local.env}.johnyfoster.com"
+    "alias2" ="${local.env}.johnyfoster.com"
+  }
+
+  zone_id = data.aws_route53_zone.johnyfoster_zone.id
+  certificate_arn = data.aws_acm_certificate.amazon_issued.arn
+}

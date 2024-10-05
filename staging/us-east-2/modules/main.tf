@@ -284,16 +284,153 @@ resource "aws_launch_template" "lt" {
 ####### Create Auto Scaling Group
 ##########################################################################
 
-resource "aws_autoscaling_group" "staging_asg" {
+resource "aws_autoscaling_group" "asg" {
   name = "${var.env}-asg"
-#   target_group_arns   = [aws_lb_target_group.staging_tg.arn]
+  target_group_arns   = [aws_lb_target_group.tg.arn]
   vpc_zone_identifier = [ for subnet in aws_subnet.private_subnets : subnet.id]
   desired_capacity    = 2
   max_size            = 4
   min_size            = 1
+  health_check_grace_period = 10
+  health_check_type         = "ELB"
 
   launch_template {
     id      = aws_launch_template.lt.id
     version = aws_launch_template.lt.latest_version
   }
 }
+
+##########################################################################
+####### Create Target Group
+##########################################################################
+
+resource "aws_lb_target_group" "tg" {
+  name     = "${var.env}-80-tg"
+  port     = 80
+  protocol = var.lb_proto_http
+  vpc_id   = aws_vpc.vpc.id
+
+  tags = {
+    Name         = "${var.env}-tg"
+    Envinonment  = var.env
+    Provisionner = var.provisioner
+  }
+}
+
+##########################################################################
+####### Create Application Load balancer
+##########################################################################
+
+resource "aws_lb" "alb" {
+  name               = "${var.env}-lb"
+  internal           = false
+  load_balancer_type = var.load_balancer_type
+  security_groups    = [aws_security_group.public_sg.id]
+  subnets            = [ for subnet in aws_subnet.public_subnets : subnet.id]
+
+  #enable_deletion_protection = true
+
+  tags = {
+    Name         = "${var.env}-lb"
+    Envinonment  = var.env
+    Provisionner = var.provisioner
+  }
+}
+
+##########################################################################
+####### Create Listeners
+##########################################################################
+
+resource "aws_lb_listener" "forward" {
+  load_balancer_arn = aws_lb.alb.arn
+  port              = var.lb_port_https
+  protocol          = var.lb_proto_https
+  ssl_policy        = var.lb_ssl_policy
+  certificate_arn   = var.certificate_arn
+
+  default_action {
+    type = "fixed-response"
+    # target_group_arn = aws_lb_target_group.tg.arn
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "PAGE NOT FOUND. Please check your URL."
+      status_code  = "200"
+    }
+  }
+}
+
+resource "aws_lb_listener" "refirect" {
+  load_balancer_arn = aws_lb.alb.arn
+  port              = var.lb_port_http
+  protocol          = var.lb_proto_http
+
+  default_action {
+    type = "redirect"
+
+    redirect {
+      port        = var.lb_port_https
+      protocol    = var.lb_proto_https
+      status_code = "HTTP_301"
+    }
+  }
+}
+
+##########################################################################
+####### Create Listeners rules
+##########################################################################
+
+resource "aws_lb_listener_rule" "rule" {
+  listener_arn = aws_lb_listener.forward.arn
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.tg.arn
+  }
+
+  condition {
+    host_header {
+      values = ["www.${var.env}.johnyfoster.com", "${var.env}.johnyfoster.com"]
+    }
+  }
+}
+
+##########################################################################
+####### Create DNS records
+##########################################################################
+
+resource "aws_route53_record" "www" {
+  for_each = var.dns_aliases
+  zone_id = var.zone_id
+  name    = each.value
+  type    = "A"
+
+  alias {
+    name                   = aws_lb.alb.dns_name
+    zone_id                = aws_lb.alb.zone_id
+    evaluate_target_health = true
+  }
+}
+
+# resource "aws_route53_record" "www" {
+#   zone_id = data.aws_route53_zone.johnyfoster_zone.id
+#   name    = "www.${var.env}.johnyfoster.com"
+#   type    = "A"
+
+#   alias {
+#     name                   = aws_lb.alb.dns_name
+#     zone_id                = aws_lb.alb.zone_id
+#     evaluate_target_health = true
+#   }
+# }
+
+# resource "aws_route53_record" "staging" {
+#   zone_id = data.aws_route53_zone.johnyfoster_zone.id
+#   name    = "${var.env}.johnyfoster.com"
+#   type    = "A"
+
+#   alias {
+#     name                   = aws_lb.alb.dns_name
+#     zone_id                = aws_lb.alb.zone_id
+#     evaluate_target_health = true
+#   }
+# }

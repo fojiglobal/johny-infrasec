@@ -133,7 +133,7 @@ variable "all_ipv4_cidr" {
 }
 
 ##########################################################################
-############# Autoscaling Grop and Launch Template Variables
+############# Autoscaling Group and Launch Template Variables
 ##########################################################################
 
 variable "image_id" {
@@ -157,5 +157,49 @@ variable "resource_type" {
 }
 
 variable "user_data" {
+  type = string
+}
+
+##########################################################################
+############# Target Group and Loab Balancer variable
+##########################################################################
+
+variable "lb_proto_http" {
+  type    = string
+}
+
+variable "lb_proto_https" {
+  type    = string
+}
+
+variable "lb_port_http" {
+  type    = string
+}
+
+variable "lb_port_https" {
+  type    = string
+}
+
+variable "lb_ssl_policy" {
+  type    = string
+}
+
+variable "load_balancer_type" {
+  type = string
+}
+
+##########################################################################
+############# DNS record variables
+##########################################################################
+
+variable "dns_aliases" {
+  type = map(string)
+}
+
+variable "zone_id" {
+  type = string
+}
+
+variable "certificate_arn" {
   type = string
 }
