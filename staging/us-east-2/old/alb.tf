@@ -26,6 +26,7 @@ resource "aws_lb" "staging_lb" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.staging_public_sg.id]
   subnets            = [aws_subnet.staging_public_subnet1.id, aws_subnet.staging_public_subnet2.id]
+  drop_invalid_header_fields = true
 
   #enable_deletion_protection = true
 
