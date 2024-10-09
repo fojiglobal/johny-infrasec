@@ -100,8 +100,8 @@ locals {
   }
   public_sg_egress = {
     "all-traffic-ipv4" = {
-    #   from_port   = 0
-    #   to_port     = 0
+      #   from_port   = 0
+      #   to_port     = 0
       cidr_ipv4   = "0.0.0.0/0"
       ip_protocol = "-1"
       description = "Allow all IPv4 outbound traffic"
@@ -140,8 +140,8 @@ locals {
 
   private_sg_egress = {
     "all-traffic-ipv4" = {
-    #   from_port   = 0
-    #   to_port     = 0  
+      #   from_port   = 0
+      #   to_port     = 0  
       ip_protocol = "-1"
       cidr_ipv4   = "0.0.0.0/0"
       description = "Allow all IPv4 outbound traffic"
@@ -166,8 +166,8 @@ locals {
 
   bastion_sg_egress = {
     "all-traffic-ipv4" = {
-    #   from_port   = 0
-    #   to_port     = 0  
+      #   from_port   = 0
+      #   to_port     = 0  
       ip_protocol = "-1"
       cidr_ipv4   = "0.0.0.0/0"
       description = "Allow all IPv4 outbound traffic"
@@ -203,9 +203,9 @@ locals {
   resource_type                        = "instance"
   user_data                            = filebase64("web.sh")
 
-  desired_capacity    = 2
-  max_size            = 4
-  min_size            = 1
+  desired_capacity          = 2
+  max_size                  = 4
+  min_size                  = 1
   health_check_grace_period = 10
   health_check_type         = "ELB"
 }
@@ -215,12 +215,12 @@ locals {
 ##########################################################################
 
 locals {
-  lb_proto_http = "HTTP"
+  lb_proto_http      = "HTTP"
   load_balancer_type = "application"
-  lb_proto_https = "HTTPS"
-  lb_port_http = "80"
-  lb_port_https = "443"
-  lb_ssl_policy = "ELBSecurityPolicy-2016-08"
+  lb_proto_https     = "HTTPS"
+  lb_port_http       = "80"
+  lb_port_https      = "443"
+  lb_ssl_policy      = "ELBSecurityPolicy-2016-08"
 }
 
 ##########################################################################
@@ -230,9 +230,9 @@ locals {
 locals {
   dns_aliases = {
     "alias1" = "www.${local.env}.johnyfoster.com"
-    "alias2" ="${local.env}.johnyfoster.com"
+    "alias2" = "${local.env}.johnyfoster.com"
   }
 
-  zone_id = data.aws_route53_zone.johnyfoster_zone.id
+  zone_id         = data.aws_route53_zone.johnyfoster_zone.id
   certificate_arn = data.aws_acm_certificate.amazon_issued.arn
 }

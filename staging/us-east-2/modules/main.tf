@@ -327,6 +327,7 @@ resource "aws_lb" "alb" {
   load_balancer_type = var.load_balancer_type
   security_groups    = [aws_security_group.public_sg.id]
   subnets            = [ for subnet in aws_subnet.public_subnets : subnet.id]
+  drop_invalid_header_fields = true
 
   #enable_deletion_protection = true
 
