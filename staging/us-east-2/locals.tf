@@ -202,4 +202,37 @@ locals {
   key_pairs_name                       = "main-us-east-2"
   resource_type                        = "instance"
   user_data                            = filebase64("web.sh")
+
+  desired_capacity    = 2
+  max_size            = 4
+  min_size            = 1
+  health_check_grace_period = 10
+  health_check_type         = "ELB"
+}
+
+##########################################################################
+############# Locals for Target Group and Load balancer
+##########################################################################
+
+locals {
+  lb_proto_http = "HTTP"
+  load_balancer_type = "application"
+  lb_proto_https = "HTTPS"
+  lb_port_http = "80"
+  lb_port_https = "443"
+  lb_ssl_policy = "ELBSecurityPolicy-2016-08"
+}
+
+##########################################################################
+############# Locals for DNS records
+##########################################################################
+
+locals {
+  dns_aliases = {
+    "alias1" = "www.${local.env}.johnyfoster.com"
+    "alias2" ="${local.env}.johnyfoster.com"
+  }
+
+  zone_id = data.aws_route53_zone.johnyfoster_zone.id
+  certificate_arn = data.aws_acm_certificate.amazon_issued.arn
 }
