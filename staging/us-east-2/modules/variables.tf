@@ -160,6 +160,24 @@ variable "user_data" {
   type = string
 }
 
+variable "desired_capacity" {
+  type = number
+}
+
+variable "max_size" {
+  type = number
+}
+
+variable "min_size" {
+  type = number
+}
+variable "health_check_grace_period" {
+  type = number
+}
+variable "health_check_type" {
+  type = string
+}
+
 ##########################################################################
 ############# Target Group and Loab Balancer variable
 ##########################################################################

@@ -32,4 +32,9 @@ module "staging" {
   zone_id = local.zone_id
   certificate_arn = local.certificate_arn
   dns_aliases = local.dns_aliases
+  desired_capacity    = local.desired_capacity
+  max_size            = local.max_size
+  min_size            = local.min_size
+  health_check_grace_period = local.health_check_grace_period
+  health_check_type         = local.health_check_type
 }

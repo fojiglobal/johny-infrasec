@@ -288,11 +288,11 @@ resource "aws_autoscaling_group" "asg" {
   name = "${var.env}-asg"
   target_group_arns   = [aws_lb_target_group.tg.arn]
   vpc_zone_identifier = [ for subnet in aws_subnet.private_subnets : subnet.id]
-  desired_capacity    = 2
-  max_size            = 4
-  min_size            = 1
-  health_check_grace_period = 10
-  health_check_type         = "ELB"
+  desired_capacity    = var.desired_capacity
+  max_size            = var.max_size
+  min_size            = var.min_size
+  health_check_grace_period = var.health_check_grace_period
+  health_check_type         = var.health_check_type
 
   launch_template {
     id      = aws_launch_template.lt.id
@@ -306,7 +306,7 @@ resource "aws_autoscaling_group" "asg" {
 
 resource "aws_lb_target_group" "tg" {
   name     = "${var.env}-80-tg"
-  port     = 80
+  port     = var.lb_port_http
   protocol = var.lb_proto_http
   vpc_id   = aws_vpc.vpc.id
 

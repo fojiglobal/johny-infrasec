@@ -202,6 +202,12 @@ locals {
   key_pairs_name                       = "main-us-east-2"
   resource_type                        = "instance"
   user_data                            = filebase64("web.sh")
+
+  desired_capacity    = 2
+  max_size            = 4
+  min_size            = 1
+  health_check_grace_period = 10
+  health_check_type         = "ELB"
 }
 
 ##########################################################################
