@@ -123,6 +123,10 @@ jobs:
     terraform-snyk-scan:
         # Allow the snyk scan of the terraform files on pull request
         if: github.event_name == 'pull_request'
+        permissions:
+          contents: read # for actions/checkout to fetch code
+          security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+          actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
         needs: tfplan
         runs-on: ubuntu-latest
 
@@ -136,10 +140,11 @@ jobs:
           # The severity-threshold option is set to critical, which ensures that the job fails if any critical vulnerabilities are found during the Snyk scan.
           with:
             file: "./qa-gha/us-east-2"
-            args: --severity-threshold=critical     # Break pipeline for any 'critical' vulnerabilities detected during scan
+            args: --severity-threshold=critical    # Break pipeline for any 'critical' vulnerabilities detected during scan
           env:
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
+        # Push the Snyk Code results into GitHub Code Scanning tab
         - name: Upload result to GitHub Code Scanning
           uses: github/codeql-action/upload-sarif@v2
           with:
