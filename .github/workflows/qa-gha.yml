@@ -131,7 +131,7 @@ jobs:
         - name: Run Snyk to check configuration files for security issues
             # Snyk can be used to break the build when it detects security issues.
             # In this case we want to upload the issues to GitHub Code Scanning
-          continue-on-error: true
+          # continue-on-error: true
           uses: snyk/actions/iac@master
           # The severity-threshold option is set to critical, which ensures that the job fails if any critical vulnerabilities are found during the Snyk scan.
           with:
