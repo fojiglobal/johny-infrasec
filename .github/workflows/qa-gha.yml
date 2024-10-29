@@ -148,7 +148,7 @@ jobs:
         - name: Upload result to GitHub Code Scanning
           uses: github/codeql-action/upload-sarif@v3
           with:
-            sarif_file: results.sarif
+            sarif_file: snyk.sarif
 
     tfapply:
         # Allow the terraform apply only if the code is merged to the main branch
