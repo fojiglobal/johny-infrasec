@@ -146,9 +146,9 @@ jobs:
 
         # Push the Snyk Code results into GitHub Code Scanning tab
         - name: Upload result to GitHub Code Scanning
-          uses: github/codeql-action/upload-sarif@v2
+          uses: github/codeql-action/upload-sarif@v3
           with:
-            sarif_file: snyk.sarif
+            sarif_file: results.sarif
 
     tfapply:
         # Allow the terraform apply only if the code is merged to the main branch
