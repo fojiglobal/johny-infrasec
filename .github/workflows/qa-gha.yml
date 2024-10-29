@@ -136,7 +136,7 @@ jobs:
           # The severity-threshold option is set to critical, which ensures that the job fails if any critical vulnerabilities are found during the Snyk scan.
           with:
             file: "./qa-gha/us-east-2"
-            args: --severity-threshold=critical
+            args: --severity-threshold=critical     # Break pipeline for any 'critical' vulnerabilities detected during scan
           env:
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
