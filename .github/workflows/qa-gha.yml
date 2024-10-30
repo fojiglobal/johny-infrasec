@@ -151,7 +151,7 @@ jobs:
             sarif_file: snyk.sarif
           
      # Snyk post scan and result output as a comment in the pull request. This is a security control in case code is forced merged without necessary approvals
-     terraform-snyk-post-scan:
+    terraform-snyk-post-scan:
       # Allow the snyk scan of the terraform files on pull push
       if: github.event_name == 'push'
       permissions:
