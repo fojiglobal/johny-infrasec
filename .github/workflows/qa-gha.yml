@@ -28,6 +28,8 @@ env:
 jobs:
   # This workflow contains a single job called "build"
     tfplan:
+        # Allow the teraform plan on pull request
+        if: github.event_name == 'pull_request'
         # The type of runner that the job will run on
         runs-on: ubuntu-latest
 
@@ -119,6 +121,12 @@ jobs:
 
     # Snyk scan and result output as a comment in the pull request
     terraform-snyk-scan:
+        # Allow the snyk scan of the terraform files on pull request
+        if: github.event_name == 'pull_request'
+        permissions:
+          contents: read # for actions/checkout to fetch code
+          security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+          actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
         needs: tfplan
         runs-on: ubuntu-latest
 
@@ -127,17 +135,18 @@ jobs:
         - name: Run Snyk to check configuration files for security issues
             # Snyk can be used to break the build when it detects security issues.
             # In this case we want to upload the issues to GitHub Code Scanning
-          continue-on-error: true
+          # continue-on-error: true
           uses: snyk/actions/iac@master
           # The severity-threshold option is set to critical, which ensures that the job fails if any critical vulnerabilities are found during the Snyk scan.
           with:
             file: "./qa-gha/us-east-2"
-            args: --severity-threshold=critical
+            args: --severity-threshold=critical    # Break pipeline for any 'critical' vulnerabilities detected during scan
           env:
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
+        # Push the Snyk Code results into GitHub Code Scanning tab
         - name: Upload result to GitHub Code Scanning
-          uses: github/codeql-action/upload-sarif@v2
+          uses: github/codeql-action/upload-sarif@v3
           with:
             sarif_file: snyk.sarif
 
