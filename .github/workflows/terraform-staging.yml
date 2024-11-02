@@ -1,6 +1,6 @@
 # This is a workflow to get the QA infrastructure provisonned with terraform through CI/CD
 
-name: QA Infrastructure Provisionning
+name: Staging Infrastructure Provisioning
 
 # Controls when the workflow will run
 on:
@@ -16,7 +16,7 @@ on:
 defaults:
     run:
         shell: bash
-        working-directory: "./qa-gha/us-east-2"
+        working-directory: "./staging/us-east-2"
 permissions:
     pull-requests: write
 
@@ -120,7 +120,7 @@ jobs:
                   }
 
     # Snyk scan and result output as a comment in the pull request
-    terraform-snyk-pre-scan:
+    terraform-snyk-scan:
         # Allow the snyk scan of the terraform files on pull request
         if: github.event_name == 'pull_request'
         permissions:
@@ -139,7 +139,7 @@ jobs:
           uses: snyk/actions/iac@master
           # The severity-threshold option is set to critical, which ensures that the job fails if any critical vulnerabilities are found during the Snyk scan.
           with:
-            file: "./qa-gha/us-east-2"
+            file: "./staging/us-east-2"
             args: --severity-threshold=critical    # Break pipeline for any 'critical' vulnerabilities detected during scan
           env:
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
@@ -149,42 +149,11 @@ jobs:
           uses: github/codeql-action/upload-sarif@v3
           with:
             sarif_file: snyk.sarif
-          
-     # Snyk post scan and result output as a comment in the pull request. This is a security control in case code is forced merged without necessary approvals
-    terraform-snyk-post-scan:
-      # Allow the snyk scan of the terraform files on pull push
-      if: github.event_name == 'push'
-      permissions:
-        contents: read # for actions/checkout to fetch code
-        security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
-        actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
-      # needs: tfplan
-      runs-on: ubuntu-latest
-
-      steps:
-      - uses: actions/checkout@v2
-      - name: Run Snyk to check configuration files for security issues
-          # Snyk can be used to break the build when it detects security issues.
-          # In this case we want to upload the issues to GitHub Code Scanning
-        # continue-on-error: true
-        uses: snyk/actions/iac@master
-        # The severity-threshold option is set to critical, which ensures that the job fails if any critical vulnerabilities are found during the Snyk scan.
-        with:
-          file: "./qa-gha/us-east-2"
-          args: --severity-threshold=critical    # Break pipeline for any 'critical' vulnerabilities detected during scan
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-      # Push the Snyk Code results into GitHub Code Scanning tab
-      - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: snyk.sarif
 
     tfapply:
         # Allow the terraform apply only if the code is merged to the main branch
-        if: github.event_name == 'push'
-        needs: terraform-snyk-post-scan
+        if: always() && github.event_name == 'push'
+        needs: terraform-snyk-scan
         # The type of runner that the job will run on
         runs-on: ubuntu-latest
 
@@ -194,7 +163,43 @@ jobs:
             - name: checkout
               uses: actions/checkout@v4
 
+            # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v3
+
+            - name: Terraform Init
+              id: init
+              run: terraform init
+
+            # Deploying ressources
             - name: Deploy Terraform
-              run: echo "Terraform Apply"
+              run: terraform apply --auto-approve
+
+      tfdestroy:
+        # Allow the terraform apply only if the code is merged to the main branch
+        if: always() && github.event_name == 'workflow_dispatch'
+        needs: tfapply
+        # The type of runner that the job will run on
+        runs-on: ubuntu-latest
+
+        # Steps representing the sequence of tasks that will be executed as part of the tfapply job
+        steps:
+            # Checkout the repository to the GitHub Actions runner
+            - name: checkout
+              uses: actions/checkout@v4
+
+            # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v3
+
+            - name: Terraform Init
+              id: init
+              run: terraform init
+
+            # Destroying the ressources
+            - name: Destroy Terraform
+              run: terraform destroy --auto-approve
+      
+      
 
             
