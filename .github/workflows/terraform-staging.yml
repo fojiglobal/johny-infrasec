@@ -175,7 +175,7 @@ jobs:
             - name: Deploy Terraform
               run: terraform apply --auto-approve
 
-      tfdestroy:
+    tfdestroy:
         # Allow the terraform apply only if the code is merged to the main branch
         if: always() && github.event_name == 'workflow_dispatch'
         needs: tfapply
