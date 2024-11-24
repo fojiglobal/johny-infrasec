@@ -390,7 +390,7 @@ resource "aws_lb_listener_rule" "rule" {
 
   condition {
     host_header {
-      values = ["www.${var.env}.johnyfoster.com", "${var.env}.johnyfoster.com"]
+      values = ["www.${var.env}.johnylabs.com", "${var.env}.johnylabs.com"]
     }
   }
 }
