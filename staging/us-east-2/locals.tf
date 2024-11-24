@@ -229,10 +229,10 @@ locals {
 
 locals {
   dns_aliases = {
-    "alias1" = "www.${local.env}.johnyfoster.com"
-    "alias2" = "${local.env}.johnyfoster.com"
+    "alias1" = "www.${local.env}.johnylabs.com"
+    "alias2" = "${local.env}.johnylabs.com"
   }
 
-  zone_id         = data.aws_route53_zone.johnyfoster_zone.id
+  zone_id         = data.aws_route53_zone.johnylabs_zone.id
   certificate_arn = data.aws_acm_certificate.amazon_issued.arn
 }
