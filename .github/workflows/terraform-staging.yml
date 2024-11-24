@@ -1,6 +1,6 @@
 # This is a workflow to get the Staging infrastructure provisonned with terraform through CI/CD
 
-name: Staging Infrastructure Provisioning
+name: Terraform Infrastructure Provisioning
 
 # Controls when the workflow will run
 on:
