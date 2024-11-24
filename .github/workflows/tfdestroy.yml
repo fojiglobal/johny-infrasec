@@ -24,9 +24,7 @@ jobs:
   # This workflow contains a single job called "tfdestroy"
     tfdestroy:
         # Allow the terraform apply only if the code is merged to the main branch
-        # if: always() && github.event_name == 'workflow_dispatch'
-        environment:
-             name: aws-mgmt
+        if: always() && github.event_name == 'workflow_dispatch'
         # The type of runner that the job will run on
         runs-on: ubuntu-latest
 

@@ -17,5 +17,5 @@ terraform {
 ##### Configure the AWS Provider
 provider "aws" {
   region  = local.use2a
-  profile = "jonasfost882842173177"
+  profile = "jonasfost-882842173177"
 }
