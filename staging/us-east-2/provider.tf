@@ -16,5 +16,5 @@ terraform {
 
 ##### Configure the AWS Provider
 provider "aws" {
-  region  = local.use2a
+  region = local.use2a
 }
