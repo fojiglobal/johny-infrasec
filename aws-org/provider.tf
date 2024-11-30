@@ -8,7 +8,7 @@ terraform {
   }
   backend "s3" {
     bucket         = "john-cs2-terraform"
-    key            = "staging/terraform.tfstate"
+    key            = "aws-org/terraform.tfstate"
     region         = "us-east-2"
     dynamodb_table = "cs2-terraform-state-lock"
   }
@@ -16,5 +16,5 @@ terraform {
 
 ##### Configure the AWS Provider
 provider "aws" {
-  region = local.use2a
+  region  = local.use2a
 }

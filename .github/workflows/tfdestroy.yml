@@ -1,0 +1,47 @@
+# This is a workflow to get the Staging Infrastructure destroyed through terraform CI/CD
+
+name: AWS Staging Infrastructure Destroy
+
+# Controls when the workflow will run
+on:
+  # Triggers this workflow manually from the Actions tab
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+    working-directory: "./staging/us-east-2"
+
+permissions:
+    pull-requests: write
+
+env:
+    AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+    AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "tfdestroy"
+    tfdestroy:
+        # Allow the terraform apply only if the code is merged to the main branch
+        if: always() && github.event_name == 'workflow_dispatch'
+        # The type of runner that the job will run on
+        runs-on: ubuntu-latest
+
+        # Steps representing the sequence of tasks that will be executed as part of the tfapply job
+        steps:
+            # Checkout the repository to the GitHub Actions runner
+            - name: checkout
+              uses: actions/checkout@v4
+
+            # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v3
+
+            - name: Terraform Init
+              id: init
+              run: terraform init
+
+            # Destroying the ressources
+            - name: Destroy Terraform
+              run: terraform destroy --auto-approve

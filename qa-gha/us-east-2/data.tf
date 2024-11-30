@@ -1,11 +1,11 @@
 ####### DNS Zone Data Lookup
-data "aws_route53_zone" "johnyfoster_zone" {
-  name = "johnyfoster.com."
+data "aws_route53_zone" "johnylabs_zone" {
+  name = "johnylabs.com."
 }
 
 ####### Certificate Data Lookup
 data "aws_acm_certificate" "amazon_issued" {
-  domain      = "*.johnyfoster.com"
+  domain      = "*.johnylabs.com"
   types       = ["AMAZON_ISSUED"]
   most_recent = true
 }
