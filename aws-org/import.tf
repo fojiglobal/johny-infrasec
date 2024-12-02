@@ -15,3 +15,17 @@ import {
   to = aws_organizations_account.cs2_sandbox
   id = "863518440945"
 }
+
+########################################################################################
+####################### Import the AWS OU created from the console #####################
+########################################################################################
+
+import {
+  to = aws_organizations_organizational_unit.sandbox
+  id = "ou-c7d3-gm1l41qr"
+}
+
+import {
+  to = aws_organizations_organizational_unit.security
+  id = "ou-c7d3-9bq9clfu"
+}
