@@ -8,12 +8,17 @@ import {
 }
 
 ########################################################################################
-################### Import the AWS Sandbox Account created from the console ############
+######### Import the AWS Sandbox and Security Account created from the console #########
 ########################################################################################
 
 import {
   to = aws_organizations_account.cs2_sandbox
   id = "863518440945"
+}
+
+import {
+  to = aws_organizations_account.cs2_security
+  id = "976193246014"
 }
 
 ########################################################################################
