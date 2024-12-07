@@ -18,7 +18,8 @@ module "staging" {
   bastion_sg_ingress                   = local.bastion_sg_ingress
   bastion_sg_egress                    = local.bastion_sg_egress
   all_ipv4_cidr                        = local.all_ipv4_cidr
-  image_id                             = local.image_id
+  # image_id                             = local.image_id
+  image_id                             = "ami-036841078a4b68e14"
   instance_initiated_shutdown_behavior = local.instance_initiated_shutdown_behavior
   instance_type                        = local.instance_type
   key_pairs_name                       = local.key_pairs_name
