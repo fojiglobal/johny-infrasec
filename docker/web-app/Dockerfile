@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:18.20.5-bookworm-slim
 # Create app directory
 WORKDIR /usr/src/app
 # Install app dependencies
