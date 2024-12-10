@@ -196,7 +196,8 @@ locals {
 ##########################################################################
 
 locals {
-  image_id                             = "ami-085f9c64a9b75eed5"
+  # image_id                             = "ami-085f9c64a9b75eed5"
+  image_id                             = "ami-00eb69d236edcfaf8"
   instance_initiated_shutdown_behavior = "terminate"
   instance_type                        = "t2.micro"
   key_pairs_name                       = "main-us-east-2"
