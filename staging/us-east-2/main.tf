@@ -21,7 +21,6 @@ module "staging" {
   image_id                             = local.image_id
   instance_initiated_shutdown_behavior = local.instance_initiated_shutdown_behavior
   instance_type                        = local.instance_type
-  # iam_instance_profile_name            = local.iam_instance_profile_name
   key_pairs_name                       = local.key_pairs_name
   resource_type                        = local.resource_type
   user_data                            = local.user_data

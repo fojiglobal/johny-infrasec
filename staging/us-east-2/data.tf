@@ -18,6 +18,10 @@ output "certificate_arn" {
 
 ########### IAM Role Data Lookup
 
-# data "aws_iam_instance_profile" "am_instance_profile_name" {
-#   name = "base-ec2-role"
-# }
+data "aws_iam_instance_profile" "iam_instance_profile" {
+  name = "base-ec2-role"
+}
+
+output "am_instance_profile_name" {
+  value = data.aws_iam_instance_profile.iam_instance_profile.name
+}

@@ -267,9 +267,9 @@ resource "aws_launch_template" "lt" {
   instance_type                        = var.instance_type
   
   # Use the Instance Profile (IAM Role)
-  # iam_instance_profile {
-  #   name = var.iam_instance_profile_name
-  # }
+  iam_instance_profile {
+    name = var.iam_instance_profile
+  }
 
   key_name                             = var.key_pairs_name
   vpc_security_group_ids               = [aws_security_group.private_sg.id]
