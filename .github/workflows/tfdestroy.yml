@@ -10,7 +10,7 @@ on:
 defaults:
   run:
     shell: bash
-    working-directory: "./staging/us-east-2"
+    working-directory: "./staging/us-east-3"
 
 permissions:
     pull-requests: write
