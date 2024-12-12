@@ -200,10 +200,10 @@ locals {
   image_id                             = "ami-036841078a4b68e14"
   instance_initiated_shutdown_behavior = "terminate"
   instance_type                        = "t2.micro"
-  # iam_instance_profile                 = data.aws_iam_instance_profile.iam_instance_profile.name
-  key_pairs_name = "main-us-east-2"
-  resource_type  = "instance"
-  user_data      = filebase64("web.sh")
+  iam_instance_profile                 = data.aws_iam_instance_profile.iam_instance_profile.name
+  key_pairs_name                       = "main-us-east-2"
+  resource_type                        = "instance"
+  user_data                            = filebase64("web.sh")
 
   desired_capacity          = 2
   max_size                  = 4

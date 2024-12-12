@@ -4,7 +4,7 @@
 
 module "staging" {
   # source                               = "./modules"
-  source                               = "github.com/fojiglobal/johny-tf-module//staging?ref=v1.0.2"
+  source                               = "github.com/fojiglobal/johny-tf-module//staging?ref=v1.0.1"
   vpc_cidr                             = local.vpc_cidr
   env                                  = local.env
   provisioner                          = local.provisioner
@@ -23,6 +23,7 @@ module "staging" {
   instance_type                        = local.instance_type
   key_pairs_name                       = local.key_pairs_name
   resource_type                        = local.resource_type
+  # iam_instance_profile                 = local.iam_instance_profile
   user_data                            = local.user_data
   lb_proto_http                        = local.lb_proto_http
   load_balancer_type                   = local.load_balancer_type
