@@ -267,6 +267,11 @@ resource "aws_launch_template" "lt" {
   instance_type                        = var.instance_type
   
   # Use the Instance Profile (IAM Role)
+
+  # iam_instance_profile {
+  #   name = var.iam_instance_profile
+  # }
+  
   iam_instance_profile {
     name = "base-ec2-role"
   }
