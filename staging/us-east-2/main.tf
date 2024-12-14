@@ -4,7 +4,7 @@
 
 module "staging" {
   # source                               = "./modules"
-  source                               = "github.com/fojiglobal/johny-tf-module//staging?ref=v1.0.4"
+  source                               = "github.com/fojiglobal/johny-tf-module//staging?ref=v1.0.5"
   vpc_cidr                             = local.vpc_cidr
   env                                  = local.env
   provisioner                          = local.provisioner
