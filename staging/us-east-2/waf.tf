@@ -15,7 +15,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     name     = "AWSManagedRulesAdminProtectionRuleSet"
     priority = 1
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
@@ -35,7 +35,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     name     = "AWSManagedRulesAmazonIpReputationList"
     priority = 2
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
@@ -55,7 +55,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     name     = "AWSManagedRulesAnonymousIpList"
     priority = 3
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
@@ -75,7 +75,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     name     = "AWSManagedRulesCommonRuleSet"
     priority = 4
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
@@ -95,7 +95,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     name     = "AWSManagedRulesKnownBadInputsRuleSet"
     priority = 5
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
@@ -115,7 +115,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     name     = "AWSManagedRulesLinuxRuleSet"
     priority = 6
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
@@ -135,7 +135,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     name     = "AWSManagedRulesPHPRuleSet"
     priority = 7
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
@@ -155,7 +155,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     name     = "AWSManagedRulesPOSIXRuleSet"
     priority = 8
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
@@ -175,7 +175,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     name     = "AWSManagedRulesSQLiRuleSet"
     priority = 9
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
@@ -195,7 +195,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     name     = "AWSManagedRulesWindowsRuleSet"
     priority = 10
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
@@ -215,7 +215,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     name     = "AWSManagedRulesWordPressRuleSet"
     priority = 11
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
