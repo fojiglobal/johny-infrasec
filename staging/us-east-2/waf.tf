@@ -10,6 +10,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     allow {}
   }
 
+  # Admin protection AWS Managed rule group
   rule {
     name     = "AWSManagedRulesAdminProtectionRuleSet"
     priority = 1
@@ -29,6 +30,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     }
   }
 
+  # Amazon IP reputation list AWS Managed rule group
   rule {
     name     = "AWSManagedRulesAmazonIpReputationList"
     priority = 2
@@ -48,6 +50,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     }
   }
 
+  # Anonymous IP list AWS Managed rule group
   rule {
     name     = "AWSManagedRulesAnonymousIpList"
     priority = 3
@@ -67,6 +70,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     }
   }
 
+  # Core rule set AWS Managed rule group
   rule {
     name     = "AWSManagedRulesCommonRuleSet"
     priority = 4
@@ -86,6 +90,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     }
   }
 
+  # Known bad inputs AWS Managed rule group
   rule {
     name     = "AWSManagedRulesKnownBadInputsRuleSet"
     priority = 5
@@ -105,6 +110,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     }
   }
 
+  # Linux operating system AWS Managed rule group
   rule {
     name     = "AWSManagedRulesLinuxRuleSet"
     priority = 6
@@ -124,6 +130,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     }
   }
 
+  # PHP application AWS Managed rule group
   rule {
     name     = "AWSManagedRulesPHPRuleSet"
     priority = 7
@@ -143,6 +150,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     }
   }
 
+  # POSIX operating system AWS Managed rule group
   rule {
     name     = "AWSManagedRulesPOSIXRuleSet"
     priority = 8
@@ -162,6 +170,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     }
   }
 
+  # SQL database AWS Managed rule group
   rule {
     name     = "AWSManagedRulesSQLiRuleSet"
     priority = 9
@@ -181,6 +190,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     }
   }
 
+  # Windows operating system AWS Managed rule group
   rule {
     name     = "AWSManagedRulesWindowsRuleSet"
     priority = 10
@@ -200,6 +210,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     }
   }
 
+  # WordPress application AWS Managed rule group
   rule {
     name     = "AWSManagedRulesWordPressRuleSet"
     priority = 11
@@ -219,6 +230,7 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
     }
   }
 
+ 
   visibility_config {
     cloudwatch_metrics_enabled = true
     metric_name                = "${local.env}-web-acl"
