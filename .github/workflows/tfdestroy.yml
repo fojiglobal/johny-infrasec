@@ -6,6 +6,11 @@ name: AWS Staging Infrastructure Destroy
 on:
   # Triggers this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      confirmation:
+        description: "Type 'DESTROY' to confirm this action"
+        required: true
+        default: ""
 
 defaults:
   run:
@@ -25,8 +30,9 @@ jobs:
     tfdestroy:
         # Allow the terraform apply only if the code is merged to the main branch
         if: always() && github.event_name == 'workflow_dispatch'
-        environment:
-             name: aws-mgmt
+        # environment:
+        #      name: aws-mgmt
+
         # The type of runner that the job will run on
         runs-on: ubuntu-latest
 
@@ -35,6 +41,14 @@ jobs:
             # Checkout the repository to the GitHub Actions runner
             - name: checkout
               uses: actions/checkout@v4
+
+            - name: Validate Confirmation
+              id: validate_confirmation
+              run: |
+                if [ "${{ github.event.inputs.confirmation }}" != "DESTROY" ]; then
+                  echo "Error: You must type 'DESTROY' to confirm this action."
+                  exit 1
+                fi
 
             # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file
             - name: Setup Terraform
