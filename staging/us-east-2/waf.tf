@@ -91,64 +91,64 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
   }
 
   # # Known bad inputs AWS Managed rule group
-  # rule {
-  #   name     = "AWSManagedRulesKnownBadInputsRuleSet"
-  #   priority = 5
-  #   override_action {
-  #     count {}
-  #   }
-  #   statement {
-  #     managed_rule_group_statement {
-  #       name        = "AWSManagedRulesKnownBadInputsRuleSet"
-  #       vendor_name = "AWS"
-  #     }
-  #   }
-  #   visibility_config {
-  #     sampled_requests_enabled   = true
-  #     cloudwatch_metrics_enabled = true
-  #     metric_name                = "AWSManagedRulesKnownBadInputsRuleSet"
-  #   }
-  # }
+  rule {
+    name     = "AWSManagedRulesKnownBadInputsRuleSet"
+    priority = 5
+    override_action {
+      count {}
+    }
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesKnownBadInputsRuleSet"
+        vendor_name = "AWS"
+      }
+    }
+    visibility_config {
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesKnownBadInputsRuleSet"
+    }
+  }
 
   # # Linux operating system AWS Managed rule group
-  # rule {
-  #   name     = "AWSManagedRulesLinuxRuleSet"
-  #   priority = 6
-  #   override_action {
-  #     count {}
-  #   }
-  #   statement {
-  #     managed_rule_group_statement {
-  #       name        = "AWSManagedRulesLinuxRuleSet"
-  #       vendor_name = "AWS"
-  #     }
-  #   }
-  #   visibility_config {
-  #     sampled_requests_enabled   = true
-  #     cloudwatch_metrics_enabled = true
-  #     metric_name                = "AWSManagedRulesLinuxRuleSet"
-  #   }
-  # }
+  rule {
+    name     = "AWSManagedRulesLinuxRuleSet"
+    priority = 6
+    override_action {
+      count {}
+    }
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesLinuxRuleSet"
+        vendor_name = "AWS"
+      }
+    }
+    visibility_config {
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesLinuxRuleSet"
+    }
+  }
 
   # # PHP application AWS Managed rule group
-  # rule {
-  #   name     = "AWSManagedRulesPHPRuleSet"
-  #   priority = 7
-  #   override_action {
-  #     count {}
-  #   }
-  #   statement {
-  #     managed_rule_group_statement {
-  #       name        = "AWSManagedRulesPHPRuleSet"
-  #       vendor_name = "AWS"
-  #     }
-  #   }
-  #   visibility_config {
-  #     sampled_requests_enabled   = true
-  #     cloudwatch_metrics_enabled = true
-  #     metric_name                = "AWSManagedRulesPHPRuleSet"
-  #   }
-  # }
+  rule {
+    name     = "AWSManagedRulesPHPRuleSet"
+    priority = 7
+    override_action {
+      count {}
+    }
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesPHPRuleSet"
+        vendor_name = "AWS"
+      }
+    }
+    visibility_config {
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesPHPRuleSet"
+    }
+  }
 
   # # POSIX operating system AWS Managed rule group
   # rule {
