@@ -24,9 +24,9 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
       }
     }
     visibility_config {
-      sampled_requests_enabled    = true
-      cloudwatch_metrics_enabled  = true
-      metric_name                 = "AWSManagedRulesAdminProtectionRuleSet"
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesAdminProtectionRuleSet"
     }
   }
 
@@ -44,9 +44,9 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
       }
     }
     visibility_config {
-      sampled_requests_enabled    = true
-      cloudwatch_metrics_enabled  = true
-      metric_name                 = "AWSManagedRulesAmazonIpReputationList"
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesAmazonIpReputationList"
     }
   }
 
@@ -64,9 +64,9 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
       }
     }
     visibility_config {
-      sampled_requests_enabled    = true
-      cloudwatch_metrics_enabled  = true
-      metric_name                 = "AWSManagedRulesAnonymousIpList"
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesAnonymousIpList"
     }
   }
 
@@ -84,9 +84,9 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
       }
     }
     visibility_config {
-      sampled_requests_enabled    = true
-      cloudwatch_metrics_enabled  = true
-      metric_name                 = "AWSManagedRulesCommonRuleSet"
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesCommonRuleSet"
     }
   }
 
@@ -104,9 +104,9 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
       }
     }
     visibility_config {
-      sampled_requests_enabled    = true
-      cloudwatch_metrics_enabled  = true
-      metric_name                 = "AWSManagedRulesKnownBadInputsRuleSet"
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesKnownBadInputsRuleSet"
     }
   }
 
@@ -124,9 +124,9 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
       }
     }
     visibility_config {
-      sampled_requests_enabled    = true
-      cloudwatch_metrics_enabled  = true
-      metric_name                 = "AWSManagedRulesLinuxRuleSet"
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesLinuxRuleSet"
     }
   }
 
@@ -144,9 +144,9 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
       }
     }
     visibility_config {
-      sampled_requests_enabled    = true
-      cloudwatch_metrics_enabled  = true
-      metric_name                 = "AWSManagedRulesPHPRuleSet"
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesPHPRuleSet"
     }
   }
 
@@ -164,9 +164,9 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
       }
     }
     visibility_config {
-      sampled_requests_enabled    = true
-      cloudwatch_metrics_enabled  = true
-      metric_name                 = "AWSManagedRulesPOSIXRuleSet"
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesPOSIXRuleSet"
     }
   }
 
@@ -184,9 +184,9 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
       }
     }
     visibility_config {
-      sampled_requests_enabled    = true
-      cloudwatch_metrics_enabled  = true
-      metric_name                 = "AWSManagedRulesSQLiRuleSet"
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesSQLiRuleSet"
     }
   }
 
@@ -204,9 +204,9 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
       }
     }
     visibility_config {
-      sampled_requests_enabled    = true
-      cloudwatch_metrics_enabled  = true
-      metric_name                 = "AWSManagedRulesWindowsRuleSet"
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesWindowsRuleSet"
     }
   }
 
@@ -224,13 +224,13 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
       }
     }
     visibility_config {
-      sampled_requests_enabled    = true
-      cloudwatch_metrics_enabled  = true
-      metric_name                 = "AWSManagedRulesWordPressRuleSet"
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesWordPressRuleSet"
     }
   }
 
- 
+
   visibility_config {
     cloudwatch_metrics_enabled = true
     metric_name                = "${local.env}-web-acl"
