@@ -90,24 +90,24 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
   }
 
   # Amazon IP reputation list AWS Managed rule group
-  # rule {
-  #   name     = "AWSManagedRulesAmazonIpReputationList"
-  #   priority = 2
-  #   override_action {
-  #     count {}
-  #   }
-  #   statement {
-  #     managed_rule_group_statement {
-  #       name        = "AWSManagedRulesAmazonIpReputationList"
-  #       vendor_name = "AWS"
-  #     }
-  #   }
-  #   visibility_config {
-  #     sampled_requests_enabled   = true
-  #     cloudwatch_metrics_enabled = true
-  #     metric_name                = "AWSManagedRulesAmazonIpReputationList"
-  #   }
-  # }
+  rule {
+    name     = "AWSManagedRulesAmazonIpReputationList"
+    priority = 2
+    override_action {
+      count {}
+    }
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesAmazonIpReputationList"
+        vendor_name = "AWS"
+      }
+    }
+    visibility_config {
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesAmazonIpReputationList"
+    }
+  }
 
   # # Anonymous IP list AWS Managed rule group
   # rule {
