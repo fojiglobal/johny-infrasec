@@ -90,205 +90,204 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
   }
 
   # Amazon IP reputation list AWS Managed rule group
-  rule {
-    name     = "AWSManagedRulesAmazonIpReputationList"
-    priority = 2
-    override_action {
-      count {}
-    }
-    statement {
-      managed_rule_group_statement {
-        name        = "AWSManagedRulesAmazonIpReputationList"
-        vendor_name = "AWS"
-      }
-    }
-    visibility_config {
-      sampled_requests_enabled   = true
-      cloudwatch_metrics_enabled = true
-      metric_name                = "AWSManagedRulesAmazonIpReputationList"
-    }
-  }
+  # rule {
+  #   name     = "AWSManagedRulesAmazonIpReputationList"
+  #   priority = 2
+  #   override_action {
+  #     count {}
+  #   }
+  #   statement {
+  #     managed_rule_group_statement {
+  #       name        = "AWSManagedRulesAmazonIpReputationList"
+  #       vendor_name = "AWS"
+  #     }
+  #   }
+  #   visibility_config {
+  #     sampled_requests_enabled   = true
+  #     cloudwatch_metrics_enabled = true
+  #     metric_name                = "AWSManagedRulesAmazonIpReputationList"
+  #   }
+  # }
 
-  # Anonymous IP list AWS Managed rule group
-  rule {
-    name     = "AWSManagedRulesAnonymousIpList"
-    priority = 3
-    override_action {
-      count {}
-    }
-    statement {
-      managed_rule_group_statement {
-        name        = "AWSManagedRulesAnonymousIpList"
-        vendor_name = "AWS"
-      }
-    }
-    visibility_config {
-      sampled_requests_enabled   = true
-      cloudwatch_metrics_enabled = true
-      metric_name                = "AWSManagedRulesAnonymousIpList"
-    }
-  }
+  # # Anonymous IP list AWS Managed rule group
+  # rule {
+  #   name     = "AWSManagedRulesAnonymousIpList"
+  #   priority = 3
+  #   override_action {
+  #     count {}
+  #   }
+  #   statement {
+  #     managed_rule_group_statement {
+  #       name        = "AWSManagedRulesAnonymousIpList"
+  #       vendor_name = "AWS"
+  #     }
+  #   }
+  #   visibility_config {
+  #     sampled_requests_enabled   = true
+  #     cloudwatch_metrics_enabled = true
+  #     metric_name                = "AWSManagedRulesAnonymousIpList"
+  #   }
+  # }
 
-  # Core rule set AWS Managed rule group
-  rule {
-    name     = "AWSManagedRulesCommonRuleSet"
-    priority = 4
-    override_action {
-      count {}
-    }
-    statement {
-      managed_rule_group_statement {
-        name        = "AWSManagedRulesCommonRuleSet"
-        vendor_name = "AWS"
-      }
-    }
-    visibility_config {
-      sampled_requests_enabled   = true
-      cloudwatch_metrics_enabled = true
-      metric_name                = "AWSManagedRulesCommonRuleSet"
-    }
-  }
+  # # Core rule set AWS Managed rule group
+  # rule {
+  #   name     = "AWSManagedRulesCommonRuleSet"
+  #   priority = 4
+  #   override_action {
+  #     count {}
+  #   }
+  #   statement {
+  #     managed_rule_group_statement {
+  #       name        = "AWSManagedRulesCommonRuleSet"
+  #       vendor_name = "AWS"
+  #     }
+  #   }
+  #   visibility_config {
+  #     sampled_requests_enabled   = true
+  #     cloudwatch_metrics_enabled = true
+  #     metric_name                = "AWSManagedRulesCommonRuleSet"
+  #   }
+  # }
 
-  # Known bad inputs AWS Managed rule group
-  rule {
-    name     = "AWSManagedRulesKnownBadInputsRuleSet"
-    priority = 5
-    override_action {
-      count {}
-    }
-    statement {
-      managed_rule_group_statement {
-        name        = "AWSManagedRulesKnownBadInputsRuleSet"
-        vendor_name = "AWS"
-      }
-    }
-    visibility_config {
-      sampled_requests_enabled   = true
-      cloudwatch_metrics_enabled = true
-      metric_name                = "AWSManagedRulesKnownBadInputsRuleSet"
-    }
-  }
+  # # Known bad inputs AWS Managed rule group
+  # rule {
+  #   name     = "AWSManagedRulesKnownBadInputsRuleSet"
+  #   priority = 5
+  #   override_action {
+  #     count {}
+  #   }
+  #   statement {
+  #     managed_rule_group_statement {
+  #       name        = "AWSManagedRulesKnownBadInputsRuleSet"
+  #       vendor_name = "AWS"
+  #     }
+  #   }
+  #   visibility_config {
+  #     sampled_requests_enabled   = true
+  #     cloudwatch_metrics_enabled = true
+  #     metric_name                = "AWSManagedRulesKnownBadInputsRuleSet"
+  #   }
+  # }
 
-  # Linux operating system AWS Managed rule group
-  rule {
-    name     = "AWSManagedRulesLinuxRuleSet"
-    priority = 6
-    override_action {
-      count {}
-    }
-    statement {
-      managed_rule_group_statement {
-        name        = "AWSManagedRulesLinuxRuleSet"
-        vendor_name = "AWS"
-      }
-    }
-    visibility_config {
-      sampled_requests_enabled   = true
-      cloudwatch_metrics_enabled = true
-      metric_name                = "AWSManagedRulesLinuxRuleSet"
-    }
-  }
+  # # Linux operating system AWS Managed rule group
+  # rule {
+  #   name     = "AWSManagedRulesLinuxRuleSet"
+  #   priority = 6
+  #   override_action {
+  #     count {}
+  #   }
+  #   statement {
+  #     managed_rule_group_statement {
+  #       name        = "AWSManagedRulesLinuxRuleSet"
+  #       vendor_name = "AWS"
+  #     }
+  #   }
+  #   visibility_config {
+  #     sampled_requests_enabled   = true
+  #     cloudwatch_metrics_enabled = true
+  #     metric_name                = "AWSManagedRulesLinuxRuleSet"
+  #   }
+  # }
 
-  # PHP application AWS Managed rule group
-  rule {
-    name     = "AWSManagedRulesPHPRuleSet"
-    priority = 7
-    override_action {
-      count {}
-    }
-    statement {
-      managed_rule_group_statement {
-        name        = "AWSManagedRulesPHPRuleSet"
-        vendor_name = "AWS"
-      }
-    }
-    visibility_config {
-      sampled_requests_enabled   = true
-      cloudwatch_metrics_enabled = true
-      metric_name                = "AWSManagedRulesPHPRuleSet"
-    }
-  }
+  # # PHP application AWS Managed rule group
+  # rule {
+  #   name     = "AWSManagedRulesPHPRuleSet"
+  #   priority = 7
+  #   override_action {
+  #     count {}
+  #   }
+  #   statement {
+  #     managed_rule_group_statement {
+  #       name        = "AWSManagedRulesPHPRuleSet"
+  #       vendor_name = "AWS"
+  #     }
+  #   }
+  #   visibility_config {
+  #     sampled_requests_enabled   = true
+  #     cloudwatch_metrics_enabled = true
+  #     metric_name                = "AWSManagedRulesPHPRuleSet"
+  #   }
+  # }
 
-  # POSIX operating system AWS Managed rule group
-  rule {
-    name     = "AWSManagedRulesPOSIXRuleSet"
-    priority = 8
-    override_action {
-      count {}
-    }
-    statement {
-      managed_rule_group_statement {
-        name        = "AWSManagedRulesPOSIXRuleSet"
-        vendor_name = "AWS"
-      }
-    }
-    visibility_config {
-      sampled_requests_enabled   = true
-      cloudwatch_metrics_enabled = true
-      metric_name                = "AWSManagedRulesPOSIXRuleSet"
-    }
-  }
+  # # POSIX operating system AWS Managed rule group
+  # rule {
+  #   name     = "AWSManagedRulesPOSIXRuleSet"
+  #   priority = 8
+  #   override_action {
+  #     count {}
+  #   }
+  #   statement {
+  #     managed_rule_group_statement {
+  #       name        = "AWSManagedRulesPOSIXRuleSet"
+  #       vendor_name = "AWS"
+  #     }
+  #   }
+  #   visibility_config {
+  #     sampled_requests_enabled   = true
+  #     cloudwatch_metrics_enabled = true
+  #     metric_name                = "AWSManagedRulesPOSIXRuleSet"
+  #   }
+  # }
 
-  # SQL database AWS Managed rule group
-  rule {
-    name     = "AWSManagedRulesSQLiRuleSet"
-    priority = 9
-    override_action {
-      count {}
-    }
-    statement {
-      managed_rule_group_statement {
-        name        = "AWSManagedRulesSQLiRuleSet"
-        vendor_name = "AWS"
-      }
-    }
-    visibility_config {
-      sampled_requests_enabled   = true
-      cloudwatch_metrics_enabled = true
-      metric_name                = "AWSManagedRulesSQLiRuleSet"
-    }
-  }
+  # # SQL database AWS Managed rule group
+  # rule {
+  #   name     = "AWSManagedRulesSQLiRuleSet"
+  #   priority = 9
+  #   override_action {
+  #     count {}
+  #   }
+  #   statement {
+  #     managed_rule_group_statement {
+  #       name        = "AWSManagedRulesSQLiRuleSet"
+  #       vendor_name = "AWS"
+  #     }
+  #   }
+  #   visibility_config {
+  #     sampled_requests_enabled   = true
+  #     cloudwatch_metrics_enabled = true
+  #     metric_name                = "AWSManagedRulesSQLiRuleSet"
+  #   }
+  # }
 
-  # Windows operating system AWS Managed rule group
-  rule {
-    name     = "AWSManagedRulesWindowsRuleSet"
-    priority = 10
-    override_action {
-      count {}
-    }
-    statement {
-      managed_rule_group_statement {
-        name        = "AWSManagedRulesWindowsRuleSet"
-        vendor_name = "AWS"
-      }
-    }
-    visibility_config {
-      sampled_requests_enabled   = true
-      cloudwatch_metrics_enabled = true
-      metric_name                = "AWSManagedRulesWindowsRuleSet"
-    }
-  }
+  # # Windows operating system AWS Managed rule group
+  # rule {
+  #   name     = "AWSManagedRulesWindowsRuleSet"
+  #   priority = 10
+  #   override_action {
+  #     count {}
+  #   }
+  #   statement {
+  #     managed_rule_group_statement {
+  #       name        = "AWSManagedRulesWindowsRuleSet"
+  #       vendor_name = "AWS"
+  #     }
+  #   }
+  #   visibility_config {
+  #     sampled_requests_enabled   = true
+  #     cloudwatch_metrics_enabled = true
+  #     metric_name                = "AWSManagedRulesWindowsRuleSet"
+  #   }
+  # }
 
-  # WordPress application AWS Managed rule group
-  rule {
-    name     = "AWSManagedRulesWordPressRuleSet"
-    priority = 11
-    override_action {
-      count {}
-    }
-    statement {
-      managed_rule_group_statement {
-        name        = "AWSManagedRulesWordPressRuleSet"
-        vendor_name = "AWS"
-      }
-    }
-    visibility_config {
-      sampled_requests_enabled   = true
-      cloudwatch_metrics_enabled = true
-      metric_name                = "AWSManagedRulesWordPressRuleSet"
-    }
-  }
-
+  # # WordPress application AWS Managed rule group
+  # rule {
+  #   name     = "AWSManagedRulesWordPressRuleSet"
+  #   priority = 11
+  #   override_action {
+  #     count {}
+  #   }
+  #   statement {
+  #     managed_rule_group_statement {
+  #       name        = "AWSManagedRulesWordPressRuleSet"
+  #       vendor_name = "AWS"
+  #     }
+  #   }
+  #   visibility_config {
+  #     sampled_requests_enabled   = true
+  #     cloudwatch_metrics_enabled = true
+  #     metric_name                = "AWSManagedRulesWordPressRuleSet"
+  #   }
+  # }
 
   visibility_config {
     cloudwatch_metrics_enabled = true
