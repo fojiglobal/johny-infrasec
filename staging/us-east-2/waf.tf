@@ -1,64 +1,5 @@
 #### Web ACL to protect our app in the staging environment
 
-# resource "aws_wafv2_web_acl" "staging_web_acl" {
-#   name        = "${local.env}-web-acl"
-#   description = "Example of a managed rule."
-#   scope       = "REGIONAL"
-
-#   default_action {
-#     allow {}
-#   }
-
-#   rule {
-#     name     = "AWSManagedRulesCommonRuleSet"
-#     priority = 1
-
-#     override_action {
-#       count {}
-#     }
-
-#     statement {
-#       managed_rule_group_statement {
-#         name        = "AWSManagedRulesCommonRuleSet"
-#         vendor_name = "AWS"
-
-#         rule_action_override {
-#           action_to_use {
-#             count {}
-#           }
-
-#           name = "SizeRestrictions_QUERYSTRING"
-#         }
-
-#         rule_action_override {
-#           action_to_use {
-#             count {}
-#           }
-
-#           name = "NoUserAgent_HEADER"
-#         }
-#       }
-#     }
-
-#     visibility_config {
-#       cloudwatch_metrics_enabled = true
-#       metric_name                = "AWSManagedRulesCommonRuleSet"
-#       sampled_requests_enabled   = true
-#     }
-#   }
-
-#   # tags = {
-#   #   Tag1 = "Value1"
-#   #   Tag2 = "Value2"
-#   # }
-
-#   visibility_config {
-#     cloudwatch_metrics_enabled = true
-#     metric_name                = "${local.env}-web-acl"
-#     sampled_requests_enabled   = true
-#   }
-# }
-
 resource "aws_wafv2_web_acl" "staging_web_acl" {
   name        = "${local.env}-waf"
   description = "WebACL to protect Load Balancer using free AWS Managed Rules"
@@ -110,44 +51,44 @@ resource "aws_wafv2_web_acl" "staging_web_acl" {
   }
 
   # # Anonymous IP list AWS Managed rule group
-  # rule {
-  #   name     = "AWSManagedRulesAnonymousIpList"
-  #   priority = 3
-  #   override_action {
-  #     count {}
-  #   }
-  #   statement {
-  #     managed_rule_group_statement {
-  #       name        = "AWSManagedRulesAnonymousIpList"
-  #       vendor_name = "AWS"
-  #     }
-  #   }
-  #   visibility_config {
-  #     sampled_requests_enabled   = true
-  #     cloudwatch_metrics_enabled = true
-  #     metric_name                = "AWSManagedRulesAnonymousIpList"
-  #   }
-  # }
+  rule {
+    name     = "AWSManagedRulesAnonymousIpList"
+    priority = 3
+    override_action {
+      count {}
+    }
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesAnonymousIpList"
+        vendor_name = "AWS"
+      }
+    }
+    visibility_config {
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesAnonymousIpList"
+    }
+  }
 
   # # Core rule set AWS Managed rule group
-  # rule {
-  #   name     = "AWSManagedRulesCommonRuleSet"
-  #   priority = 4
-  #   override_action {
-  #     count {}
-  #   }
-  #   statement {
-  #     managed_rule_group_statement {
-  #       name        = "AWSManagedRulesCommonRuleSet"
-  #       vendor_name = "AWS"
-  #     }
-  #   }
-  #   visibility_config {
-  #     sampled_requests_enabled   = true
-  #     cloudwatch_metrics_enabled = true
-  #     metric_name                = "AWSManagedRulesCommonRuleSet"
-  #   }
-  # }
+  rule {
+    name     = "AWSManagedRulesCommonRuleSet"
+    priority = 4
+    override_action {
+      count {}
+    }
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesCommonRuleSet"
+        vendor_name = "AWS"
+      }
+    }
+    visibility_config {
+      sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesCommonRuleSet"
+    }
+  }
 
   # # Known bad inputs AWS Managed rule group
   # rule {
