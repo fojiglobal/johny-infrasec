@@ -8,6 +8,6 @@ kubectl create namespace prod
 
 #---------- Deploying juiceshop app to each environment/namespaces
 
-kubectl apply -f juiceapp-dev.yml --namespace dev 
-kubectl apply -f juiceapp-stage.yml --namespace stage 
-kubectl apply -f juiceapp-prod.yml --namespace prod 
+kubectl apply -f juiceapp-dev.yml -n dev 
+kubectl apply -f juiceapp-stage.yml -n stage 
+kubectl apply -f juiceapp-prod.yml -n prod 
