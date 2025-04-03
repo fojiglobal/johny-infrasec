@@ -54,4 +54,5 @@ elif temp_in_celcius >= 30:
     print("The temperature today is", temp_in_celcius, "°F. The Weather is very Hard Outside. So be careful with Heat Waves.")        
 
 
+
     
